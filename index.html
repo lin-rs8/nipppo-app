@@ -54,7 +54,8 @@
       </label>
       <label>作業内容 <textarea id="content" rows="3" required></textarea></label>
       <!-- 今回の新ネタ：写真の選択欄 -->
-      <label>写真（任意） <input type="file" id="photo" accept="image/*"></label>
+      <label>📷 撮影する <input type="file" id="camera" accept="image/*" capture="environment"></label>
+      <label>🖼 ギャラリーから選ぶ <input type="file" id="photo" accept="image/*"></label>
       <button type="submit" id="submit-btn">登録</button>
     </form>
     <p id="message" class="msg"></p>
@@ -169,7 +170,7 @@
 
       // --- 今回の新ネタ：写真があれば先にStorageへアップロード ---
       let photoPath = null;
-      const file = document.getElementById('photo').files[0];
+            const file = document.getElementById('camera').files[0] || document.getElementById('photo').files[0];
       if (file) {
         // 保存場所は「自分のユーザーID/日時.拡張子」
         // （日本語のファイル名はトラブルの元なので、日時に付け替える）
@@ -211,6 +212,7 @@
       document.getElementById('site_name').value = '';
       document.getElementById('content').value = '';
       document.getElementById('photo').value = '';
+      document.getElementById('camera').value = '';
       load();
     });
   </script>
